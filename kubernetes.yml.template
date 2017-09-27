@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         ports:
         - name: hello-world
-          containerPort: 8080
+          containerPort: 80
           protocol: TCP
       imagePullSecrets:
         - name: wercker          
@@ -35,8 +35,8 @@ metadata:
     commit: ${WERCKER_GIT_COMMIT}
 spec:
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 80
+    targetPort: 80
   selector:
     app: hello-world
     commit: ${WERCKER_GIT_COMMIT}
@@ -54,4 +54,4 @@ spec:
       - path:
         backend:
           serviceName: hello-world
-          servicePort: 8080
+          servicePort: 80

@@ -15,7 +15,7 @@ push-release:
     - internal/docker-push:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         working-dir: /pipeline/source
-        ports: "8080"
+        ports: "80"
         cmd: ./hello-world
         
 #delete any existing Wercker secret before creating, to accommodate secret changes
