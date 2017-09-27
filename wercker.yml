@@ -17,6 +17,27 @@ push-release:
         working-dir: /pipeline/source
         ports: "8080"
         cmd: ./hello-world
+        
+#delete any existing Wercker secret before creating, to accommodate secret changes
+inject-secret:
+    box:
+        id: alpine
+        cmd: /bin/sh
+    steps:
+    
+    - kubectl:
+        name: delete secret
+        server: $KUBERNETES_MASTER
+        token: $KUBERNETES_TOKEN
+        insecure-skip-tls-verify: true
+        command: delete secret wercker; echo delete registry secret
+        
+    - kubectl:
+        name: create secret
+        server: $KUBERNETES_MASTER
+        token: $KUBERNETES_TOKEN
+        insecure-skip-tls-verify: true
+        command: create secret docker-registry wercker --docker-server=$DOCKER_REGISTRY --docker-username=$DOCKER_USERNAME --docker-password=$KUBERNETES_TOKEN --docker-email=$DOCKER_EMAIL; echo create registry secret
 
 deploy-to-cluster:
     box:
@@ -33,6 +54,7 @@ deploy-to-cluster:
     - kubectl:
         name: deploy to kubernetes
         server: $KUBERNETES_MASTER
-        token: $KUBERNETES_PASSWORD
+        token: $KUBERNETES_TOKEN
         insecure-skip-tls-verify: true
         command: apply -f kubernetes.yml
+
