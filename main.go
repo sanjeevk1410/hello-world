@@ -9,6 +9,7 @@ import (
 
 func HelloWorld(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("Hello friend!!"))
+	w.Write([]byte("\nAUTOMATION_TAG:cksh.teeeeiad4die"))
 }
 
 func main() {
