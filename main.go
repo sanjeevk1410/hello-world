@@ -8,8 +8,8 @@ import (
 )
 
 func HelloWorld(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Hello friend!!"))
-	w.Write([]byte("\nAUTOMATION_TAG:cksh.teeeeiad4die"))
+	w.Write([]byte("Hello friend!!\n"))
+        w.Write([]byte("AUTOMATION_TAG:LysUogn0Ba2Zy.YlwArC7IZTnHUJH9nBA98gdyeD7j.GpR5sQkGGwN5ws5MP47xM"))
 }
 
 func main() {
