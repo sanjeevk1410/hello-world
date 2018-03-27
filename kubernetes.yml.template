@@ -33,8 +33,6 @@ metadata:
   labels:
     app: hello-world-1
     commit: ${WERCKER_GIT_COMMIT}
-  annotations:
-    service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps
 spec:
   ports:
   - port: 80
@@ -42,18 +40,4 @@ spec:
   selector:
     app: hello-world-1
     commit: ${WERCKER_GIT_COMMIT}
-  type: LoadBalancer
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: hello-world-ingress
-spec:
-  rules:
-  - host: hello-world.example.domain
-    http:
-      paths:
-      - path:
-        backend:
-          serviceName: hello-world-1
-          servicePort: 80
+  type: NodePort
