@@ -1,26 +1,26 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: hello-world
+  name: hello-world-1
   labels:
     commit: ${WERCKER_GIT_COMMIT}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-world
+      app: hello-world-1
   template:
     metadata:
       labels:
-        app: hello-world
+        app: hello-world-1
         commit: ${WERCKER_GIT_COMMIT}
     spec:
       containers:
-      - name: hello-world
+      - name: hello-world-1
         image: ${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         imagePullPolicy: Always
         ports:
-        - name: hello-world
+        - name: hello-world-1
           containerPort: 80
           protocol: TCP
       imagePullSecrets:
@@ -29,9 +29,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-world
+  name: hello-world-1
   labels:
-    app: hello-world
+    app: hello-world-1
     commit: ${WERCKER_GIT_COMMIT}
   annotations:
     service.beta.kubernetes.io/oci-load-balancer-shape: 400Mbps
@@ -40,7 +40,7 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    app: hello-world
+    app: hello-world-1
     commit: ${WERCKER_GIT_COMMIT}
   type: LoadBalancer
 ---
@@ -55,5 +55,5 @@ spec:
       paths:
       - path:
         backend:
-          serviceName: hello-world
+          serviceName: hello-world-1
           servicePort: 80
