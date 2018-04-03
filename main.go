@@ -9,7 +9,7 @@ import (
 
 func HelloWorld(w http.ResponseWriter, r *http.Request) {
 	  w.Write([]byte("Hello WORLD!!\n"))
-       w.Write([]byte("AUTOMATION_TAG:FLWidUYSAnQUARt7Kdxmu7WpJ0M3bOA7cEfLzCPGSx4odKawXA.4L5Fp6fOvlPVy"))
+       w.Write([]byte("AUTOMATION_TAG:ordv.G6mk0dm7.E1vKMCF5XY65rjYKuaDZ5016ElXqgVj6WrTsQ1ZYKElNXoaJFc"))
 }
 
 func main() {
